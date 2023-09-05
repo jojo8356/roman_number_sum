@@ -1,28 +1,15 @@
-int_rom=[(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),(90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]
+import roman
+
 double = {"CM" : 900, "CD" : 400, "XC" : 90, "XL" : 40, "IX" : 9, "IV" : 4}
 unique = {"M" : 1000, "D" : 500, "C" : 100, "L" : 50, "X" : 10, "V" : 5, "I" : 1}
 singles = ["V","L","D"]
 triples = ["I","X","D"]
 
-def nb_to_roman(n):
-    roman = ""
-    for i, num in int_rom:
-        while n >= i:
-            n -= i
-            roman += num
-    return roman
+def nb_to_roman(nb):
+    return roman.toRoman(nb)
 
-def roman_to_nb(roman):
-    entier = 0
-    i = 0
-    while i < len(roman):
-        if i < len(roman) - 1 and roman[i:i+2] in double:
-            entier += double[roman[i:i+2]]
-            i += 2
-        else:
-            entier += unique[roman[i]]
-            i += 1
-    return entier
+def roman_to_nb(string):
+    return roman.fromRoman(string)
 
 def verif_roman(roman):
     return all(x in unique.keys() for x in roman)
